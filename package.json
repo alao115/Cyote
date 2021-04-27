@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon -r esm index.js",
-    "start": "node -r esm NODE_ENV='production' index.js"
+    "start": "node -r esm index.js"
   },
   "author": "",
   "license": "ISC",

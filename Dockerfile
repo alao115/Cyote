@@ -1,7 +1,7 @@
 FROM node:latest
 
-COPY . /home/Coyoto-App
+COPY . /home/Coyoto-Backend
 
-WORKDIR /home/Coyoto-App
+WORKDIR /home/Coyoto-Backend
 
 ENTRYPOINT npm run dev

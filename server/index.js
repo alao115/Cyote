@@ -1,18 +1,30 @@
-import { rejects } from 'assert'
+import https from 'https'
 import { createServer } from 'http'
-import { resolve } from 'path'
+import path from 'path';
+import fs from 'fs'
 import config from '../config'
-import { normalizePort, onListening, onError } from '../helpers/appsupport'
+import { normalizePort } from '../helpers/appsupport'
 
 export default ({ app }) => {
     return new Promise((resolve, reject) => {
-        if (app.get('env') === 'development') {
-            const port = normalizePort(config.port)
-            const server = createServer(app)
+        const port = normalizePort(config.port)
 
-            server.listen(port)
-            server.on('listening', () => resolve(server))
-            server.on('error', (error) => reject({ error, port }))
-        }
+        if (app.get('env') !== 'development') {
+          const server = createServer(app)
+
+          server.listen(port)
+          server.on('listening', () => resolve(server))
+          server.on('error', (error) => reject({ error, port }))
+        } else {
+          const option = {
+            key: fs.readFileSync(path.join('keys', 'server.key'), 'utf-8'),
+            cert: fs.readFileSync(path.join('keys', 'server.cert'), 'utf-8')
+          }
+
+          const server = https.createServer(option, app);
+          server.listen(port);
+          server.on('listening', () => resolve(server))
+          server.on('error', (error) => reject({ error, port }))
+      }
     })
 }

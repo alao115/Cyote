@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 export default {
+    app_address: 'localhost',
     port: process.env.APP_PORT || 3000,
     appName: process.env.APP_NAME || "API Boilerplate",
     logLevel: 'debug',

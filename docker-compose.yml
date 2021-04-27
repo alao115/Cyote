@@ -17,12 +17,13 @@ services:
       - '6379:6379'
 
   api:
-    container_name: 'backend-api'
-    image: 'coyotoapp'
+    container_name: 'coyoto-api'
+    image: 'coyoto-backend'
     volumes:
-      - '/home/anonymous/Documents/coding/Node/Coyoto-App:/home/Coyoto-App'
+      - '/home/anonymous/Documents/coding/Node/Coyoto-Backend:/home/Coyoto-Backend'
     ports:
       - '3000:3000'
+      - '3000:95'
     depends_on:
       - 'mongodb'
       - 'redis'

@@ -44,7 +44,7 @@ export function onListening({ server }) {
         'pipe ' + addr :
         'port ' + addr.port;
 
-		success(`Listening on http://localhost:${addr.port}`)
+		success(`Listening on port ${addr.port}`)
 }
 
 export function handle404(req, res, next) {

@@ -23,10 +23,10 @@ services:
       - '/home/anonymous/Documents/coding/Node/Coyoto-Backend:/home/Coyoto-Backend'
     ports:
       - '3000:3000'
-      - '3000:95'
     depends_on:
       - 'mongodb'
       - 'redis'
+    entrypoint: 'npm run start'
 
   mongoExpress:
     container_name: 'mongo_express'

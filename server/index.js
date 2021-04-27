@@ -8,11 +8,12 @@ import { normalizePort } from '../helpers/appsupport'
 export default ({ app }) => {
     return new Promise((resolve, reject) => {
         const port = normalizePort(config.port)
+        const hostname = normalizePort(config.hostname)
 
         if (app.get('env') !== 'development') {
           const server = createServer(app)
 
-          server.listen(port)
+          server.listen(port, hostname)
           server.on('listening', () => resolve(server))
           server.on('error', (error) => reject({ error, port }))
         } else {
@@ -22,7 +23,7 @@ export default ({ app }) => {
           }
 
           const server = https.createServer(option, app);
-          server.listen(port);
+          server.listen(port, hostname);
           server.on('listening', () => resolve(server))
           server.on('error', (error) => reject({ error, port }))
       }

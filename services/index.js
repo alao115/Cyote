@@ -5,6 +5,7 @@ import userManager from './user.service'
 import RedisClientManager from './redisClient.service'
 import speedManager from './speed.service'
 import speedEntryManager from './speedEntry.service'
+import RoleService from './role.service'
 
 
 import { User, Speed, SpeedEntry } from "../models"
@@ -22,5 +23,6 @@ export {
   AuthManager,
   ValidationManager,
   SpeedService,
-  SpeedEntryService
+  SpeedEntryService,
+  RoleService
 }

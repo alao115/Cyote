@@ -8,6 +8,7 @@ export default class ValidationManager {
             firstname: Joi.string().min(3).required(),
             lastname: Joi.string().min(3).required(),
             email: Joi.string().email().required(),
+            role: Joi.string().default('user'),
             password: Joi.string().min(8).required()
         }),
 
@@ -36,6 +37,7 @@ export default class ValidationManager {
           direction: Joi.number().less(3).greater(0),
           entryPoint: Joi.object().keys({
             value: Joi.string().required(),
+            address: Joi.string().allow(''),
             dValue: Joi.number(),
             coords: Joi.object().keys({
               lat: Joi.number().required(),
@@ -44,6 +46,7 @@ export default class ValidationManager {
           }).required(),
           exitPoint: Joi.object().keys({
             value: Joi.string().required(),
+            address: Joi.string().allow(''),
             dValue: Joi.number(),
             coords: Joi.object().keys({
               lat: Joi.number().required(),

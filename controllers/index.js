@@ -1,7 +1,7 @@
 import { signUp, signIn, refresh, resetPassword } from './authController'
 import { addUser, getAllUser, getOneUser, deleteUser, updateUser } from './userController';
 import { addSpeed, getAllSpeed, deleteSpeed } from "./speedController";
-import { addSpeedEntry, getAllSpeedEntry, deleteSpeedEntry, getOneSpeedEntry } from "./speedEntryController";
+import { addSpeedEntry, getAllSpeedEntry, deleteSpeedEntry, getOneSpeedEntry, updateSpeedEntry } from "./speedEntryController";
 
 import { AuthManager, userService, SpeedService, SpeedEntryService } from '../services'
 
@@ -24,6 +24,7 @@ const addSpeedEntryController = addSpeedEntry({ SpeedEntryService })
 const getAllSpeedEntryController = getAllSpeedEntry({ SpeedEntryService })
 const deleteSpeedEntryController = deleteSpeedEntry({ SpeedEntryService })
 const getOneSpeedEntryController = getOneSpeedEntry({ SpeedEntryService })
+const updateSpeedEntryController = updateSpeedEntry({ SpeedEntryService })
 
 
 export {
@@ -45,5 +46,6 @@ export {
   addSpeedEntryController,
   getAllSpeedEntryController,
   deleteSpeedEntryController,
-  getOneSpeedEntryController
+  getOneSpeedEntryController,
+  updateSpeedEntryController
 }

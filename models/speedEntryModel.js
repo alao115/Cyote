@@ -41,6 +41,10 @@ export const speedEntrySchema = new Schema({
       type: Schema.Types.ObjectId,
       required: true,
       ref: 'Speed'
+    },
+    address: {
+      type: String,
+      default: ''
     }
   },
   exitPoint:{
@@ -51,6 +55,10 @@ export const speedEntrySchema = new Schema({
     value: {
       type: Schema.Types.ObjectId,
       ref: 'Speed'
+    },
+    address: {
+      type: String,
+      default: ''
     }
   },
   user: {
@@ -58,6 +66,10 @@ export const speedEntrySchema = new Schema({
     ref: 'User',
     required: true
   },
+  isAccepted: {
+    type: Boolean,
+    default: false
+  }
 })
 
 const User = model('User', userSchema)

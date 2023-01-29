@@ -3,7 +3,7 @@ export default ({ User }) => class userService {
 
   static findAll = async () => {
     try {
-      const users = await User.find({}, { __v: false , password: false });
+      const users = await User.find({}, { __v: false , password: false }).populate('speedEntries');
       return users;
     } catch (error) { throw error }
   };
@@ -32,16 +32,18 @@ export default ({ User }) => class userService {
 
   static update = async ({ id, data }) => {
     try {
-      const user = await this.findByID({ id });
-      user.updateOne({ ...data });
-      return data;
+      delete data._id
+      const user = await User.updateOne({ _id: id }, { ...data });
+      //return user;
     } catch (error) { throw error}
   };
 
   static deleteUser = async ({ id }) => {
     try {
       const user = await this.findByID({ id });
-      await user.deleteOne();
+      if(user)
+        await user.deleteOne();
+      else throw new Error('Record not found')
     } catch (error) { throw error}
   };
 }

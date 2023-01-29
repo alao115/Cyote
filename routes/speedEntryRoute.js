@@ -1,6 +1,6 @@
 import Router from 'express'
 
-import { addSpeedEntryController, getAllSpeedEntryController, deleteSpeedEntryController,  getOneSpeedEntryController } from '../controllers'
+import { addSpeedEntryController, getAllSpeedEntryController, deleteSpeedEntryController,  getOneSpeedEntryController, updateSpeedEntryController } from '../controllers'
 
 const router = Router()
 
@@ -15,6 +15,8 @@ export default ({ app, JWTManager, ValidationManager }) => {
   router.get('/', getAllSpeedEntryController)
 
   router.get('/:speedEntryID', getOneSpeedEntryController)
+
+  router.patch('/:speedEntryID', updateSpeedEntryController)
 
   router.delete('/:speedEntryID', deleteSpeedEntryController)
 }

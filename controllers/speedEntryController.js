@@ -24,6 +24,15 @@ const getAllSpeedEntry = ({ SpeedEntryService }) => async (req, res, next) => {
   } catch (error) { next(error) }
 }
 
+const updateSpeedEntry = ({ SpeedEntryService }) => async (req, res, next) => {
+  try {
+    const data = req.body
+    const { speedEntryID: id } = req.params
+    const speedEntry = await SpeedEntryService.update({ id, data })
+		res.send({ success: 1, data: { speedEntry }})
+  } catch (error) { next(error) }
+}
+
 const deleteSpeedEntry = ({ SpeedEntryService }) => async (req, res, next ) => {
   try {
     const { speedEntryID } = req.params
@@ -37,4 +46,5 @@ export {
   addSpeedEntry,
   getAllSpeedEntry,
   deleteSpeedEntry,
+  updateSpeedEntry
 }

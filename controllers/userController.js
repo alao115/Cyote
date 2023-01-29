@@ -22,7 +22,8 @@ const getAllUser = ({ userService }) => async ( req, res, next ) => {
 
 const updateUser = ({ userService }) => async (req, res, next) => {
   try {
-    const { aud: id, data } = req.payload
+    const data = req.body
+    const { userID: id } = req.params
     const user = await userService.update({ id, data })
 		res.send({ success: 1, data: { user }})
   } catch (error) { next(error) }
@@ -30,7 +31,7 @@ const updateUser = ({ userService }) => async (req, res, next) => {
 
 const deleteUser = ({ userService }) => async (req, res, next) => {
   try {
-    const { aud: id } = req.payload
+    const { userID: id } = req.params
     await userService.deleteUser({ id })
 		res.send({ success: 1, data: { }})
   } catch (error) { next(error) }

@@ -3,7 +3,6 @@ import fs from 'fs'
 import path from 'path'
 import createError from 'http-errors'
 import moment from 'moment'
-import e from 'express'
 
 export default ({ redisClientManager, userService }) => class JWTManager {
 
@@ -50,6 +49,7 @@ export default ({ redisClientManager, userService }) => class JWTManager {
         if(!isUserExist) next(createError.Unauthorized())
 
         req.payload = payload;
+        req.payload.user = isUserExist
 
         next();
       } else next(createError.Unauthorized())

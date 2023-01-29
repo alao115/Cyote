@@ -15,9 +15,17 @@ export default ({ SpeedEntry }) => class SpeedEntryService {
     } catch (error) { throw error }
   }
 
+  static update = async ({ id, data }) => {
+    try {
+      delete data._id
+      const speedEntry = await SpeedEntry.updateOne({ _id: id }, { ...data });
+      return speedEntry;
+    } catch (error) { throw error}
+  }
+
   static findAll = async () => {
     try {
-      const speedEntries = await SpeedEntry.find({}, { __v: false}).populate('user', { __v: false, password: false  }).populate('entryPoint.value', { __v: false }).populate('exitPoint.value', { __v: false })
+      const speedEntries = await SpeedEntry.find({}, { __v: false}).populate('user', { __v: false, password: false , speedEntries: false }).populate('entryPoint.value', { __v: false }).populate('exitPoint.value', { __v: false })
       return speedEntries
     } catch (error) { throw error}
   }

@@ -4,18 +4,18 @@ import { getAllUserController, addUserController, getOneUserController, deleteUs
 
 const router = Router()
 
-export default ({ app, ValidationManager, JWTManager }) => {
+export default ({ app, ValidationManager, JWTManager, RoleService }) => {
 	app.use('/users', router)
 
 	router.use(JWTManager.verifyAccessToken)
 
-  router.post('/', addUserController)
+  router.post('/', RoleService({ role: [ 'admin' ] }), ValidationManager.signUpValidation, addUserController)
 
-  router.get('/', getAllUserController)
+  router.get('/', RoleService({ role: [ 'admin' ] }), getAllUserController)
 
-	router.get('/me', getOneUserController)
+	router.get('/me', RoleService({ role: [ 'user', 'admin' ] }), getOneUserController)
 
-  router.patch('/:userID', updateUserController)
+  router.patch('/:userID', RoleService({ role: [ 'user', 'admin' ] }), updateUserController)
 
-  router.delete('/:userID', deleteUserController)
+  router.delete('/:userID', RoleService({ role: [ 'admin' ] }), deleteUserController)
 }
